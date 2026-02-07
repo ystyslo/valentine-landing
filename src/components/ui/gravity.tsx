@@ -93,7 +93,9 @@ type PhysicsBody = {
 
 type MatterBodyProps = {
   children: ReactNode;
-  matterBodyOptions?: Matter.IBodyDefinition;
+  matterBodyOptions?: Omit<Matter.IBodyDefinition, "chamfer"> & {
+    chamfer?: Matter.IChamfer;
+  };
   isDraggable?: boolean;
   bodyType?: "rectangle" | "circle" | "svg";
   sampleLength?: number;
@@ -210,7 +212,7 @@ const Gravity = forwardRef<GravityRef, GravityProps>(
     const [canvasSize, setCanvasSize] = useState({ width: 0, height: 0 });
 
     const isRunning = useRef(false);
-    const updateElementsRef = useRef<() => void>();
+    const updateElementsRef = useRef<() => void>(undefined);
 
     // Keep react elements in sync with the physics world
     const updateElements = useCallback(() => {

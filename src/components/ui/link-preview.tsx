@@ -15,7 +15,6 @@ type LinkPreviewProps = {
   className?: string;
   width?: number;
   height?: number;
-  quality?: number;
   isStatic?: boolean;
   imageSrc?: string;
 };
@@ -26,7 +25,6 @@ export const LinkPreview = ({
   className,
   width = 200,
   height = 125,
-  quality = 50,
   isStatic = false,
   imageSrc = "",
 }: LinkPreviewProps) => {
